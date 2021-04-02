@@ -130,10 +130,21 @@ public class WordCount {
     FileInputFormat.addInputPath(job, new Path(otherArgs.get(0)));
     FileOutputFormat.setOutputPath(job, new Path(otherArgs.get(1)));
 
-    long time2 = System.currentTimeMillis();
     
-    System.out.println("Execution Time: " + (time2-time1));
+    
+    //System.out.println("Execution Time: " + (time2-time1));
 
-    System.exit(job.waitForCompletion(true) ? 0 : 1);
+
+    if(job.waitForCompletion(true)){
+      long time2 = System.currentTimeMillis();
+      System.out.println("Execution Time: " + (time2-time1));
+      System.exit(0);
+    }else{
+      System.exit(1);
+    }
+
+
+    //System.exit(job.waitForCompletion(true) ? 0 : 1);
+    //System.out.println("Execution Time: " + (time2-time1));
   }
 }
